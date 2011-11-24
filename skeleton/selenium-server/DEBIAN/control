@@ -1,0 +1,8 @@
+Package: selenim-server 
+Version: VERSION 
+Section: web
+Maintainer: Jan Schumann <j.schumann@searchmetrics.com>
+Architecture: amd64
+Depends: openjdk-6-jre
+Description: Selenuim Server Functional testing server 
+ Contains start and stop scripts for the server 
