@@ -26,6 +26,7 @@ fi
 
 if [ "$1" = "start" -o "$1" = "restart" ]; then
   if [ ! -f "$PID_FILE" ]; then
+    export DISPLAY:=99
     nohup java -jar /usr/lib/selenium-server/selenium-server.jar -port $PORT >> $LOG_FILE 2>&1 &
     PID=$!
     echo $PID > $PID_FILE
