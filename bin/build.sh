@@ -2,7 +2,7 @@
 
 set -e
 
-REVISION="0.1"
+REVISION="0.4"
 
 while getopts v: option
 do
@@ -58,6 +58,8 @@ sed -i "s/VERSION/$VERSION-$REVISION/" selenium-server/DEBIAN/control
 cp $SRC_DIR/$VERSION/$FILE_NAME $PACKAGE_DIR/selenium-server/usr/lib/selenium-server/selenium-server.jar
 
 sudo chown -R root:root *
+sudo chmod 0755 $PACKAGE_DIR/selenium-server/DEBIAN/postinst
+sudo chmod 0755 $PACKAGE_DIR/selenium-server/DEBIAN/postrm
 sudo chmod a+x $PACKAGE_DIR/selenium-server/etc/init.d/selenium-server
 
 # build the packages

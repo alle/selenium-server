@@ -1,0 +1,7 @@
+#! /bin/sh
+
+set -e
+
+if [ -x "/etc/init.d/selenium-server" ]; then
+        update-rc.d selenium-server defaults 20 >/dev/null || exit $?
+fi
