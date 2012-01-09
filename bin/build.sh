@@ -2,7 +2,7 @@
 
 set -e
 
-REVISION="0.4"
+REVISION="0.55555"
 
 while getopts v: option
 do
