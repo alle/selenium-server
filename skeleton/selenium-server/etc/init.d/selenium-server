@@ -14,11 +14,12 @@ set -e
 PORT=4444
 LOG_FILE=/var/log/selenium/server.log
 PID_FILE=/var/run/selenium-server.pid
+DISPLAY=99
 
 if [ "$1" = "status" ]; then
   if [ -f "$PID_FILE" ]; then
     echo
-    echo "Selenium-Server is running ... PID=$(cat $PID_FILE)."  
+    echo "Selenium-Server is running ... PID=$(cat $PID_FILE)."
   else
     echo "Selenuim-Server is not running."
   fi
@@ -29,15 +30,17 @@ if [ -f "$PID_FILE" ]; then
   PID=$(cat $PID_FILE)
   if [ "$1" = "restart" -o "$1" = "stop" ]; then
     kill $PID
-    rm $PID_FILE 
+    rm $PID_FILE
   fi
 fi
 
 if [ "$1" = "start" -o "$1" = "restart" ]; then
   if [ ! -f "$PID_FILE" ]; then
-    export DISPLAY=:99
+    export DISPLAY=:$DISPLAY
     nohup java -jar /usr/lib/selenium-server/selenium-server.jar -port $PORT >> $LOG_FILE 2>&1 &
     PID=$!
     echo $PID > $PID_FILE
   fi
+  fluxbox 2>&1 > /dev/null &
+  DISPLAY=:$DISPLAY firefox http://localhost:$PORT/wd/hub &
 fi
