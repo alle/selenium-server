@@ -48,12 +48,13 @@ fi
 PACKAGE_DIR=$SCRIPT_DIR/../packages
 if [ -d $PACKAGE_DIR ]; then
   sudo rm -Rf $PACKAGE_DIR
-fi 
+fi
 mkdir $PACKAGE_DIR
 PACKAGE_DIR=$(realpath $SCRIPT_DIR/../packages)
 cd $PACKAGE_DIR
 
 cp -R ../skeleton/selenium-server .
+mkdir -p selenium-server/usr/lib/selenium-server
 sed -i "s/VERSION/$VERSION-$REVISION/" selenium-server/DEBIAN/control
 cp $SRC_DIR/$VERSION/$FILE_NAME $PACKAGE_DIR/selenium-server/usr/lib/selenium-server/selenium-server.jar
 
