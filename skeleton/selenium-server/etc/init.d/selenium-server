@@ -34,6 +34,8 @@ if [ -f "$PID_FILE" ]; then
   fi
 fi
 
+mkdir -p $(dirname $LOG_FILE)
+
 if [ "$1" = "start" -o "$1" = "restart" ]; then
   if [ ! -f "$PID_FILE" ]; then
     export DISPLAY=:$DISPLAY
