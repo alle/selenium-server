@@ -43,6 +43,7 @@ if [ "$1" = "start" -o "$1" = "restart" ]; then
     PID=$!
     echo $PID > $PID_FILE
   fi
+  sleep 5
   fluxbox -display :$DISP 2>&1 > /dev/null &
   DISPLAY=:$DISP firefox http://localhost:$PORT/wd/hub &
 fi
